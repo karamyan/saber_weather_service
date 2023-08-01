@@ -1,0 +1,99 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "The most perfect weather api",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/weather/get_all": {
+            "post": {
+                "tags": [
+                    "weather_get_all"
+                ],
+                "summary": "Weather info",
+                "description": "Get weather info by city",
+                "operationId": "weather_get_all",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "city"
+                                ],
+                                "properties": {
+                                    "city": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/weather/get_single": {
+            "post": {
+                "tags": [
+                    "weather_get_single"
+                ],
+                "summary": "Weather info",
+                "description": "Get weather info by city",
+                "operationId": "weather_get_single",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "provider",
+                                    "city"
+                                ],
+                                "properties": {
+                                    "provider": {
+                                        "type": "text",
+                                        "enum": [
+                                            "weatherbit",
+                                            "goweather"
+                                        ]
+                                    },
+                                    "city": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "429": {
+                        "description": "Too many requests"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        }
+    }
+}
